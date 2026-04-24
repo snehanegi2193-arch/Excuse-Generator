@@ -94,7 +94,22 @@ let excuses = [
   document.getElementById("excuse").innerText =
     excuses[random] + " " + randomEmoji;
  sparkleBoom();   
- playRandomSound();
+let currentSound = null;
+
+function playRandomSound() {
+  // stop previous sound
+  if (currentSound) {
+    currentSound.pause();
+    currentSound.currentTime = 0;
+  }
+
+  // play new sound
+  let sound = sounds[Math.floor(Math.random() * sounds.length)];
+  currentSound = sound;
+
+  sound.currentTime = 0;
+  sound.play();
+}
 }
 function generateAIExcuse() {
     document.title = "AI judging you 😭";
@@ -134,7 +149,22 @@ function generateAIExcuse() {
   let random = Math.floor(Math.random() * aiExcuses.length);
   document.getElementById("excuse").innerText = aiExcuses[random];
   sparkleBoom();
-  playRandomSound();
+let currentSound = null;
+
+function playRandomSound() {
+  // stop previous sound
+  if (currentSound) {
+    currentSound.pause();
+    currentSound.currentTime = 0;
+  }
+
+  // play new sound
+  let sound = sounds[Math.floor(Math.random() * sounds.length)];
+  currentSound = sound;
+
+  sound.currentTime = 0;
+  sound.play();
+}
 }
 
 function sparkleBoom() {
