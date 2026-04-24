@@ -94,22 +94,7 @@ let excuses = [
   document.getElementById("excuse").innerText =
     excuses[random] + " " + randomEmoji;
  sparkleBoom();   
-let currentSound = null;
-
-function playRandomSound() {
-  // stop previous sound
-  if (currentSound) {
-    currentSound.pause();
-    currentSound.currentTime = 0;
-  }
-
-  // play new sound
-  let sound = sounds[Math.floor(Math.random() * sounds.length)];
-  currentSound = sound;
-
-  sound.currentTime = 0;
-  sound.play();
-}
+ playRandomSound();
 }
 function generateAIExcuse() {
     document.title = "AI judging you 😭";
@@ -149,22 +134,7 @@ function generateAIExcuse() {
   let random = Math.floor(Math.random() * aiExcuses.length);
   document.getElementById("excuse").innerText = aiExcuses[random];
   sparkleBoom();
-let currentSound = null;
-
-function playRandomSound() {
-  // stop previous sound
-  if (currentSound) {
-    currentSound.pause();
-    currentSound.currentTime = 0;
-  }
-
-  // play new sound
-  let sound = sounds[Math.floor(Math.random() * sounds.length)];
-  currentSound = sound;
-
-  sound.currentTime = 0;
-  sound.play();
-}
+  playRandomSound();
 }
 
 function sparkleBoom() {
@@ -183,15 +153,22 @@ function sparkleBoom() {
   }
 }
 let sounds = [];
+let currentSound = null;
 
 for (let i = 1; i <= 53; i++) {
   let audio = new Audio(`sounds/sound${i}.mp3`);
   audio.volume = 0.3;
   sounds.push(audio);
 }
-
 function playRandomSound() {
+  if (currentSound) {
+    currentSound.pause();
+    currentSound.currentTime = 0;
+  }
+
   let sound = sounds[Math.floor(Math.random() * sounds.length)];
+  currentSound = sound;
+
   sound.currentTime = 0;
   sound.play();
 }
